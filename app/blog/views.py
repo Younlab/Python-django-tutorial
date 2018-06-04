@@ -17,3 +17,12 @@ def post_list(request):
     #
     # # return HttpResponse(result)
     # return HttpResponse(result)
+    posts = Post.objects.all()
+    context = {
+        'posts':posts,
+    }
+    # render는 주어진 1,2 번째 인수를 사용해서
+    # 1번째인수 : HttpRequests 인스턴스
+    # 2번째인수 : 문자열(TEMPLATE['DIRS']를 기준으로 탐색할 템플릿 파일의 경로
+    # return render
+    return render(request, 'blog/post_list.html', context)

@@ -9,19 +9,13 @@
 </head>
 <body>
     <h1>My blog</h1>
+    {% for post in posts %}
     <div>
-        <p>published: 04.06.2018, 12:14</p>
-        <h2>Younlab</h2>
-        <p>전체 포스트 목록입니다.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi cum dignissimos et eum fugiat magnam nostrum quam ratione. Asperiores aspernatur debitis in modi voluptatem. Esse, eum ipsum laudantium optio perferendis quaerat quam qui ratione sint. Cum enim eum suscipit voluptas.</p>
+        <p>{{ post.published_date }}</p>
+        <h2>{{ post.title }}</h2>
+        <p>{{ post.text }}</p>
     </div>
-
-    <div>
-        <p>published: 04.06.2018, 12:14</p>
-        <h2>Younlab</h2>
-        <p>전체 포스트 목록입니다.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus deserunt dolor nam omnis porro qui repellat? Aspernatur dolores est facere neque nihil obcaecati quisquam sequi similique temporibus totam. Assumenda atque beatae consectetur, harum illum repellendus sit vero voluptas voluptates?</p>
-    </div>
+    {% endfor %}
 
 </body>
 </html>
