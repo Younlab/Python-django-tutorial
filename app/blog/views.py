@@ -1,3 +1,4 @@
+from django.shortcuts import render
 from django.template.loader import render_to_string
 from django.http import HttpResponse
 
@@ -5,9 +6,4 @@ from django.http import HttpResponse
 
 def post_list(request):
     html = render_to_string('blog/post_list.html')
-    return HttpResponse(html)
-
-
-
-
-
+    return render(request, 'blog/post_list.html')
