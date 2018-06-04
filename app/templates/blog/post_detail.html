@@ -1,5 +1,4 @@
 {% load static %}
-
 <!doctype html>
 <html lang="ko">
 <head>
@@ -7,24 +6,20 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>My First Blog</title>
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+
+    <title>Document</title>
 </head>
 <body>
-
     <div class="container">
         <h1 class="mt-4">My blog</h1>
 
-        {% for post in posts %}
         <div class="card md-4 mt-4">
             <div class="card-body">
-                <h4 class="card-title"><a href="{{ post.id }}/">{{ post.title }}</a></h4>
-                <p class="card-text">{{ post.text | truncatechars:100 }}</p>
-                <p class="card-subtitle text-muted md-3 text-right">{{ post.published_date }}</p>
+                <h2>{{ post.title }}</h2>
+                <p>{{ post.text }}</p>
             </div>
         </div>
-        {% endfor %}
     </div>
-
 </body>
 </html>
