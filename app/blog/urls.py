@@ -1,5 +1,6 @@
 from django.conf.urls import url
-from .views import post_list, post_detail, post_create
+from .views import post_list, post_detail, post_create, post_delete
+
 urlpatterns = [
     # url의 첫 번째 인자: 매치될 url 정규표현식
     # url의 두 번재 인자: view function
@@ -8,8 +9,9 @@ urlpatterns = [
     url(r'^$', post_list, name='post-list'),
     # ex1) 3/
     # ex2) 235/
-    url(r'^(\d+)/', post_detail, name='post-detail'),
-    url(r'^write/', post_create, name='post-create'),
+    url(r'^(\d+)/$', post_detail, name='post-detail'),
+    url(r'^write/$', post_create, name='post-create'),
+    url(r'^(\d+)/delete/$', post_delete, name='post-delete'),
 ]
 
 # Django 에서 처리 가능한 하나의 페이지를 만들때
