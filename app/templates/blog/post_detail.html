@@ -1,8 +1,5 @@
 {% extends 'blog/base.html' %}
 {% block content %}
-<from>
-    {% csrf_token %}
-    <a href="{% url 'post-delete' %}" class="btn btn-primary">삭제</a>
     <div class="container">
         <div class="card md-4 mt-4">
             <div class="card-body">
@@ -11,6 +8,5 @@
             </div>
         </div>
     </div>
-</from>
 
 {% endblock %}

@@ -66,10 +66,7 @@ def post_create(request):
         return render(request, 'blog/post_create.html', context)
 
 def post_delete(request, post_id):
-    # post = Post.objects.all()
-#     # if request.method == 'POST':
-#     #     post.delete()
-#     #     return redirect('post-list')
-#     # else:
-#     #     pass
-    return HttpResponse('post_delete page')
+    if request.method == 'POST':
+        post = Post.objects.get(id=post_id)
+        post.delete()
+        return redirect('post-list')
