@@ -5,10 +5,10 @@ urlpatterns = [
     # url의 두 번재 인자: view function
     #   view function
     #       request를 받아서 response를 돌려주는 함수
-    url(r'^$', post_list),
+    url(r'^$', post_list, name='post-list'),
     # ex1) 3/
     # ex2) 235/
-    url(r'^(\d+)/', post_detail),
+    url(r'^(\d+)/', post_detail, name='post-detail'),
 ]
 
 # Django 에서 처리 가능한 하나의 페이지를 만들때
