@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 
 # Create your views here.
 from .models import Post
@@ -21,7 +21,7 @@ def post_list(request):
     # 1번째인수 : HttpRequests 인스턴스
     # 2번째인수 : 문자열(TEMPLATE['DIRS']를 기준으로 탐색할 템플릿 파일의 경로
     # return render
-    posts = Post.objects.all()
+    posts = Post.objects.all().order_by('-id')
     context = {
         'posts':posts,
     }
@@ -53,12 +53,14 @@ def post_create(request):
         # request.user 에 있는 User 인스턴스 속성을 사용해서
         # 세 post 인스턴스를 생성
         # HttpResponse를 사용해 새로생성된 인스턴스의 id, title, text 정보를 출력
-        result = Post.objects.create(
-            author=request.user,
+        post = Post.objects.create(
+            author= request.user,
             title = request.POST['title'],
-            text = request.POST['text'],
+            text = request.POST['content'],
 
         )
-        return HttpResponse('id: {},author: {}, title: {}, text: {}'.format(result.id, result.author, result.title, result.text))
+        # HTTP Redirection을 보낼 URL
+        # http://localhost:8000/
+        return redirect('post-list')
     else:
         return render(request, 'blog/post_create.html', context)
