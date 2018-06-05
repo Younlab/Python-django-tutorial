@@ -19,7 +19,7 @@
         <div class="card md-4 mt-4">
             <div class="card-body">
                 <h4 class="card-title"><a href="{{ post.id }}/">{{ post.title }}</a></h4>
-                <p class="card-text">{{ post.text | truncatechars:100 }}</p>
+                <p class="card-text">{{ post.text |linebreaksbr| truncatechars:100 }}</p>
                 <p class="card-subtitle text-muted md-3 text-right">{{ post.published_date }}</p>
             </div>
         </div>

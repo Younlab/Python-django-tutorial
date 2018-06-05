@@ -32,5 +32,7 @@ def post_detail(requset, post_id):
     context = {
         'post': post,
     }
+
     # post_detail view function 이 올바르게 동작하는 html을 작성해 오세요
+    # post_detail.html 파일을 만들어서 post.id 값을 할당하여 해당 페이지로 넘겨주기
     return render(requset, 'blog/post_detail.html', context)
