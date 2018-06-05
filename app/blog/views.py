@@ -36,3 +36,29 @@ def post_detail(requset, post_id):
     # post_detail view function 이 올바르게 동작하는 html을 작성해 오세요
     # post_detail.html 파일을 만들어서 post.id 값을 할당하여 해당 페이지로 넘겨주기
     return render(requset, 'blog/post_detail.html', context)
+
+def post_create(request):
+    # title
+    # text
+    # title = Post.objects.create(title=)
+    # text = Post.objects.create(text=)
+    context = {
+
+    }
+    print(request.POST.get('title'))
+    print(request.POST.get('content'))
+    if request.method == 'POST':
+        # request의 method 값이 'POST' 일 경우
+        # request.POST에 있는 title, text 값과
+        # request.user 에 있는 User 인스턴스 속성을 사용해서
+        # 세 post 인스턴스를 생성
+        # HttpResponse를 사용해 새로생성된 인스턴스의 id, title, text 정보를 출력
+        result = Post.objects.create(
+            author=request.user,
+            title = request.POST['title'],
+            text = request.POST['text'],
+
+        )
+        return HttpResponse('id: {},author: {}, title: {}, text: {}'.format(result.id, result.author, result.title, result.text))
+    else:
+        return render(request, 'blog/post_create.html', context)

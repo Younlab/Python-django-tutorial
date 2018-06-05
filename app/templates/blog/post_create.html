@@ -1,0 +1,15 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+    <form action="" method="POST">
+        {% csrf_token %}
+           <labal for="exampleFormControlInput1">Title</labal>
+           <input name="title" type="text" class="form-control" id="exampleFormControlInput1">
+           <labal></labal>
+           <textarea class="form-control" name="content" id="editor">
+
+
+           </textarea>
+           <button class="btn btn-primary text-right md-3" type="submit">save</button>
+    </form>
+
+{% endblock %}
