@@ -23,9 +23,10 @@ def post_list(request):
     # return render
     posts = Post.objects.all().order_by('-id')
     context = {
-        'posts':posts,
+        'posts': posts,
     }
     return render(request, 'blog/post_list.html', context)
+
 
 def post_detail(requset, post_id):
     post = Post.objects.get(id=post_id)
@@ -36,6 +37,7 @@ def post_detail(requset, post_id):
     # post_detail view function 이 올바르게 동작하는 html을 작성해 오세요
     # post_detail.html 파일을 만들어서 post.id 값을 할당하여 해당 페이지로 넘겨주기
     return render(requset, 'blog/post_detail.html', context)
+
 
 def post_create(request):
     # title
@@ -54,9 +56,9 @@ def post_create(request):
         # 세 post 인스턴스를 생성
         # HttpResponse를 사용해 새로생성된 인스턴스의 id, title, text 정보를 출력
         post = Post.objects.create(
-            author= request.user,
-            title = request.POST['title'],
-            text = request.POST['content'],
+            author=request.user,
+            title=request.POST['title'],
+            text=request.POST['content'],
 
         )
         # HTTP Redirection을 보낼 URL
@@ -65,8 +67,37 @@ def post_create(request):
     else:
         return render(request, 'blog/post_create.html', context)
 
+
 def post_delete(request, post_id):
     if request.method == 'POST':
         post = Post.objects.get(id=post_id)
         post.delete()
         return redirect('post-list')
+
+
+def post_edit(request, post_id):
+    post = Post.objects.get(id=post_id)
+
+    if request.method == 'POST':
+        pass
+        # 글을 수정하기
+        # 1. 수정할 내용(title, text)을 가져온다
+        # 2. 수정할 Post 인스턴스 명시
+        # 3. 해당하는 Post 인스턴스의 title, text 를 수정해서 DB에 저장
+        # 4. post_detail로 이동
+        title = request.POST['title']
+        text = request.POST['content']
+
+        # 수정해서 DB에 저장
+        post.title = title
+        post.text = text
+        post.save()
+        # return HttpResponseRedirect('/{}/'.format(post_id))
+        # post-detail에 해당하는 URL 을 만들어 내려면,
+        # (\d+)에 해당하는 부분을 채울 값이 함께 필요
+        return redirect('post-detail', post_id)
+    # POST 방식이라면 어차피 위에서 return 되므로ㅓ else문 생략
+    context = {
+        'post':post,
+    }
+    return render(request, 'blog/post_edit.html', context)

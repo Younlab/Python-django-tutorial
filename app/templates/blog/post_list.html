@@ -8,7 +8,8 @@
                 <p class="card-text">{{ post.text |linebreaksbr| truncatechars:100 }}</p>
                 <p class="card-subtitle text-muted md-3 text-right">{{ post.published_date }}</p>
                 <div>
-                <form action="{% url 'post-delete' post.id %}" method="POST">
+                <a href="{% url 'post-edit' post.id %}" class="mr-1 btn btn-primary btn-sm float-left">edit</a>
+                <form action="{% url 'post-delete' post.id %}" method="POST" class="float-left">
                 {% csrf_token %}
                 <button type="submit" class="btn btn-sm btn-danger">삭제</button>
                 </form>
